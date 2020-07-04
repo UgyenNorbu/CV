@@ -4,14 +4,13 @@ surname: Norbu
 position: "Transporttion Engineer"
 address: "Road Safety & Transport Authority"
 phone: +975 77364637
-www: rsta.gov.bt
+www: www.rsta.gov.bt
 email: "unorbu@rsta.gov.bt"
 twitter: Ugyen2007Norbu
 github: UgyenNorbu
-linkedin: ugyen-norbu-54300018
 date: "`r format(Sys.time(), '%B %Y')`"
-headcolor: 104E8B
-output: vitae::hyndman
+headcolor: 383838
+output: vitae::awesomecv
 ---
 
 ```{r setup, include=FALSE}
@@ -19,10 +18,19 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 library(vitae)
 ```
 
-# Some stuff about me
+# Work Experience
+```{r}
+library(tibble)
+library(readxl)
 
- * I was the first woman to win a Nobel prize
- * I was the first person and only woman to win a Nobel prize in two different sciences.
+data <- readxl::read_xlsx("/Users/ugyennorbu/Documents/GitHub/CV/data/work_exp.xlsx")
+
+tibble(data) %>% 
+  detailed_entries(Position, Year, Agency, Location)
+
+
+```
+
 
 # Education
 
@@ -30,41 +38,28 @@ library(vitae)
 library(tibble)
 tribble(
   ~ Degree, ~ Year, ~ Institution, ~ Where,
-  "Informal studies", "1889-91", "Flying University", "Warsaw, Poland",
-  "Master of Physics", "1893", "Sorbonne Université", "Paris, France",
-  "Master of Mathematics", "1894", "Sorbonne Université", "Paris, France"
+  "Master of Engineering", "2017-19", "Anna University", "Chennai, India",
+  "B.Tech in Civil Engineering", "2007-11", "Jaypee University of Information Technology", "HP, India"
 ) %>% 
   detailed_entries(Degree, Year, Institution, Where)
 ```
 
-# Nobel Prizes
+# Achievement
 
-```{r}
-tribble(
-  ~Year, ~Type, ~Desc,
-  1903, "Physics", "Awarded for her work on radioactivity with Pierre Curie and Henri Becquerel",
-  1911, "Chemistry", "Awarded for the discovery of radium and polonium"
-) %>% 
-  brief_entries(
-    glue::glue("Nobel Prize in {Type}"),
-    Year, 
-    Desc
-  )
-```
+- Received Nehru-Wangchuk Scholarship in 2017 to pursue Masters in Engineering.
+- Received YDF Academic Scholarship in 2007 to pursue B.Tech.
+- Received Certificate of Excellence in 2005 for academic general proficiency from Yangchenphu Higher Secondary School
+- Received Letter of Appreciation from Dzongdag, Pemagatshelthe for service rendered as National Observer during 2016 Local Government Election 
 
-# Publications
+# Skills
 
-```{r}
-library(dplyr)
-scholar::get_publications("EmD_lTEAAAAJ&EmD_lTEAAAAJ&") %>% 
-  filter(cites > 30) %>% 
-  distinct(title, .keep_all = TRUE) %>%
-  transmute(bibtype = "Article", author = as.character(author),
-            title = as.character(title),
-            journaltitle = as.character(journal), year, key = row_number()) %>% 
-  RefManageR::as.BibEntry() %>% 
-  RefManageR::WriteBib("curie.bib")
+- Data analysis and visualization using R and Python programming language.
+- Drafting and engineering drawing using AutoCAD.
+- Geospatial analysis and cartography using QGIS.
+- Image editing using Photoshop, Gimp, Adobe Lightroom.
+- 3D modeling using Google Sketchup.
 
-bibliography_entries("curie.bib")
-```
+# Additional information
 
+- Attended training on ‘Urban Road Management and Maintenance’ in Sapporo, Japan in 2014 organised by JICA.
+- Attended seminar on ‘Safe Mobility & Regional Connectivity’ in New Delhi, India organized by SASEC.
